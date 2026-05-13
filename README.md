@@ -1,2 +1,2 @@
 # For Poll SCM 2
-github hook trigger new
+github hook trigger
