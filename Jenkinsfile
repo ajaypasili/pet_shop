@@ -1,25 +1,35 @@
 pipeline {
-    agent {
-  label 'dev'
-}
-tools {
-  maven 'maven'
-}
+    agent any
+
     stages {
-        stage('Git') {
+
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/vamsibyramala/pet_shop.git'
+                git branch: 'main',
+                    url: 'https://github.com/ajaypasili/pet_shop.git'
             }
         }
-        stage('maven') {
+
+        stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('deploy') {
+
+        stage('Deploy') {
             steps {
-                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://18.216.225.116:8080/')], contextPath: 'myapp', war: '**/*.war'
+              deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: '5e99610c-02ed-4dba-8322-12aae216beed', path: '', url: 'http://65.2.140.98:8085/')], contextPath: 'hello', war: '**/*.war'  
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Application deployed successfully'
+        }
+
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
