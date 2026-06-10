@@ -18,7 +18,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'cp -r /var/lib/jenkins/workspace/pipe_line peoject/target/petshop.war /var/lib/tomcat10/webapps/'
+                sh 'cp -r /root/var/lib/jenkins/workspace/pipe_line peoject/target/petshop.war /root/var/lib/tomcat10/webapps/'
             }
         }
     }
