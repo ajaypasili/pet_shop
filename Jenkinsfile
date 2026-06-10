@@ -18,7 +18,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'cp -r target/petshop.war /var/lib/tomcat10/webapps/'
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: '7274cd61-f12b-479c-8e49-7718b719a801', path: '', url: 'http://13.220.129.213:8090/')], contextPath: 'hello', war: '**/*.war'
             }
         }
     }
